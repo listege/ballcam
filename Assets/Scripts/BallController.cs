@@ -40,6 +40,7 @@ public class BallController : MonoBehaviour {
 
 		Vector3 power = new Vector3(0f, 0f, 0f);
 
+		/*
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			power.x =  amplitude;
 		} else if (Input.GetKey (KeyCode.DownArrow)) {
@@ -49,8 +50,10 @@ public class BallController : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
 			power.z = -amplitude;
 		}
+		*/
 
-
+		power.x = Input.GetAxis ("Vertical") * amplitude;
+		power.z = -Input.GetAxis ("Horizontal") * amplitude;
 
 		rbd.AddForce (power);
 	}
