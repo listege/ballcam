@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -132,6 +133,12 @@ public class GameState : MonoBehaviour
 		{
 			rotation += cameraRotationSpeed * Time.deltaTime;
 			endingCamera.transform.localRotation = Quaternion.Euler(90, rotation, 0);
+			if (Input.anyKeyDown)
+			{
+				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
+				SceneManager.LoadScene (sceneIndex + 1);
+			}
+				
 			yield return null;
 		}
 	}
