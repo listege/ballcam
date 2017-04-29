@@ -118,6 +118,21 @@ public class BallController : MonoBehaviour {
 	public void Activate(bool state)
 	{
 		isPlaying = state;
+		// TEMP
+		Transform childTransform = transform.FindChild("toungue");
+		if (isPlaying == true)
+		{
+			Vector3 tounguePos = childTransform.localPosition;
+			tounguePos.z = 0.24f;
+			childTransform.localPosition = tounguePos;
+		}
+		else
+		{
+			Vector3 tounguePos = childTransform.localPosition;
+			tounguePos.z = 0.5f;
+			childTransform.localPosition = tounguePos;
+		}
+		// TEMP
 		camera.gameObject.SetActive (!state);
 
 		UnityStandardAssets.ImageEffects.NoiseAndGrain noise = camera.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
@@ -129,6 +144,12 @@ public class BallController : MonoBehaviour {
 		isPlaying = false;
 		camera.gameObject.SetActive (false);
 		audioSource.spatialBlend = 0;
+		// TEMP
+		Transform childTransform = transform.FindChild("toungue");
+		Vector3 tounguePos = childTransform.localPosition;
+		tounguePos.z = 0.24f;
+		childTransform.localPosition = tounguePos;
+		// TEMP
 	}
 
 	public float CheckAngle(BallController otherController)
