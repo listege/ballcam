@@ -6,32 +6,36 @@ public class GameState : MonoBehaviour {
 
 	public float timer = 5f;
 
-	public Camera Camera1;
-	public Camera Camera2;
-	public BallController b1;
-	public BallController b2;
+	public BallController[] ballControllers = new BallController[2];
+	public int ballCursor = 0;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		BallController[] foundControllers = FindObjectsOfType<BallController> ();
+		foreach (BallController foundController in foundControllers)
+		{
+			ballControllers [foundController.uniqueIndex] = foundController;
+			foundController.Activate (foundController.uniqueIndex == 0);
+		}
+
 		InvokeRepeating ("ChangeCam", timer, timer);
 	}
 
-	void ChangeCam(){
-		if (Camera1.gameObject.activeSelf) {
-			Camera2.gameObject.SetActive (true);
-			Camera1.gameObject.SetActive (false);
-			b2.isPlaying = false;
-			b1.isPlaying = true;
-		} else if (Camera2.gameObject.activeSelf) {
-			Camera1.gameObject.SetActive (true);
-			Camera2.gameObject.SetActive (false);
-			b2.isPlaying = true;
-			b1.isPlaying = false;
-		}
+	void ChangeCam()
+	{
+		ballCursor = (ballCursor + 1) % ballControllers.Length;
+		for (int i = 0; i < ballControllers.Length; i++)
+			ballControllers [i].Activate (i == ballCursor);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
+		// 게임 클리어 검사
+		//if (Vector3.Distance (b1.transform.localPosition, b2.transform.localPosition) <= 1.0f)
+		//{
+		//	Debug.Log ("MEEET");
+		//}
 	}
 }

@@ -6,16 +6,26 @@ public class BallController : MonoBehaviour {
 
 	public bool isPlaying = false;
 
+	public int uniqueIndex = 0;
+	public Color[] uniqueColors = null;
 	public float clamp = 0.1f;
 	public float amplitude = 0.3f;
 
 	Rigidbody rbd;
+	Camera camera;
 	float x;
 	float y;
 
-	// Use this for initialization
-	void Start () {
+	void Awake ()
+	{
 		rbd = GetComponent<Rigidbody> ();
+		Transform cameraTransform = transform.FindChild ("Camera_1");
+		camera = cameraTransform.GetComponent<Camera> ();
+
+		// 모양 설정은 여기서
+		Transform childTransform = transform.FindChild("Sphere");
+		MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
+		renderer.material.color = uniqueColors [uniqueIndex];
 	}
 	
 	// Update is called once per frame
@@ -69,5 +79,11 @@ public class BallController : MonoBehaviour {
 			rbd.drag = 0.5f;
 		else
 			rbd.drag = 2;
+	}
+
+	public void Activate(bool state)
+	{
+		isPlaying = state;
+		camera.gameObject.SetActive (!state);
 	}
 }
