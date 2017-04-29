@@ -8,9 +8,11 @@ public class BallController : MonoBehaviour {
 
 	public int uniqueIndex = 0;
 	public Color[] uniqueColors = null;
+	public AudioClip[] uniqueLoops = null;
 	public float clamp = 0.1f;
 	public float amplitude = 0.3f;
 
+	AudioSource audioSource = null;
 	Rigidbody rbd;
 	Camera camera;
 	float x;
@@ -21,11 +23,14 @@ public class BallController : MonoBehaviour {
 		rbd = GetComponent<Rigidbody> ();
 		Transform cameraTransform = transform.FindChild ("Camera_1");
 		camera = cameraTransform.GetComponent<Camera> ();
-
+		Transform childTransform = transform.FindChild("toungue");
+		audioSource = childTransform.GetComponent<AudioSource> ();
 		// 모양 설정은 여기서
 		//Transform childTransform = transform.FindChild("toungue");
 		//MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
 		//renderer.material.color = uniqueColors [uniqueIndex];
+		audioSource.clip = uniqueLoops[uniqueIndex];
+		audioSource.Play ();
 	}
 	
 	void FixedUpdate ()
@@ -115,5 +120,10 @@ public class BallController : MonoBehaviour {
 		Vector3 cameraFrontVector = camera.transform.forward;
 
 		return Vector3.Dot (directionVector, cameraFrontVector);
+	}
+
+	public void LookAt(Vector3 position)
+	{
+		transform.LookAt (position);
 	}
 }
