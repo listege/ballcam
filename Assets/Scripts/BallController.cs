@@ -12,6 +12,8 @@ public class BallController : MonoBehaviour {
 	public float clamp = 0.1f;
 	public float amplitude = 0.3f;
 
+	public GameObject Tongue;
+
 	AudioSource audioSource = null;
 	Rigidbody rbd;
 	GameState gamestate;
