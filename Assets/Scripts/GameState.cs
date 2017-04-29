@@ -93,7 +93,7 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_EndingObject()
 	{
-		yiend return null;
+		yield return null;
 	}
 
 	IEnumerator Coroutine_EndingCamera()
