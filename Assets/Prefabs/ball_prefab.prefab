@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 124474724932675822}
   - component: {fileID: 92471538757683314}
   - component: {fileID: 81340294386016446}
+  - component: {fileID: 114387901574666278}
   m_Layer: 10
   m_Name: Camera_1
   m_TagString: Untagged
@@ -734,6 +735,32 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 1
+--- !u!114 &114387901574666278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1608364433632778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9191284b058eef549b7108b5f04e1117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensityMultiplier: 0.25
+  generalIntensity: 0.5
+  blackIntensity: 1
+  whiteIntensity: 1
+  midGrey: 0.2
+  dx11Grain: 0
+  softness: 0
+  monochrome: 0
+  intensities: {x: 1, y: 1, z: 1}
+  tiling: {x: 64, y: 64, z: 64}
+  monochromeTiling: 64
+  filterMode: 1
+  noiseTexture: {fileID: 2800000, guid: 7a632f967e8ad42f5bd275898151ab6a, type: 3}
+  noiseShader: {fileID: 4800000, guid: b0249d8c935344451aa4de6db76f0688, type: 3}
+  dx11NoiseShader: {fileID: 4800000, guid: 8b30686bb4322ab42ad5eb50a0210b58, type: 3}
 --- !u!114 &114840092107110552
 MonoBehaviour:
   m_ObjectHideFlags: 1

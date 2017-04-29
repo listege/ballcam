@@ -54,12 +54,10 @@ public class BallController : MonoBehaviour {
 		}
 		*/
 
-<<<<<<< HEAD
-=======
+
 		power.x = Input.GetAxis ("Vertical") * amplitude;
 		power.z = -Input.GetAxis ("Horizontal") * amplitude;
 
->>>>>>> 4531b8a2ca763f2ed6b8caf466b548248b003233
 		rbd.AddForce (power);
 	}
 

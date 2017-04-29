@@ -24,15 +24,12 @@ public class GameState : MonoBehaviour
 	[HideInInspector]
 	public bool isGameOver = false;
 
-<<<<<<< HEAD
 	bool GrainPlayed = false;
-=======
 	void Awake()
 	{
 		audioSource = GetComponent<AudioSource> ();
 		audioSource.Play ();
 	}
->>>>>>> 4531b8a2ca763f2ed6b8caf466b548248b003233
 
 	// Use this for initialization
 	void Start ()
