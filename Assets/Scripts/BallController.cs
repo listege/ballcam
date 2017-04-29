@@ -121,17 +121,9 @@ public class BallController : MonoBehaviour {
 		// TEMP
 		Transform childTransform = transform.FindChild("toungue");
 		if (isPlaying == true)
-		{
-			Vector3 tounguePos = childTransform.localPosition;
-			tounguePos.z = 0.24f;
-			childTransform.localPosition = tounguePos;
-		}
+			childTransform.gameObject.SetActive (true);
 		else
-		{
-			Vector3 tounguePos = childTransform.localPosition;
-			tounguePos.z = 0.5f;
-			childTransform.localPosition = tounguePos;
-		}
+			childTransform.gameObject.SetActive (false);
 		// TEMP
 		camera.gameObject.SetActive (!state);
 
@@ -146,9 +138,7 @@ public class BallController : MonoBehaviour {
 		audioSource.spatialBlend = 0;
 		// TEMP
 		Transform childTransform = transform.FindChild("toungue");
-		Vector3 tounguePos = childTransform.localPosition;
-		tounguePos.z = 0.24f;
-		childTransform.localPosition = tounguePos;
+		childTransform.gameObject.SetActive (true);
 		// TEMP
 	}
 
