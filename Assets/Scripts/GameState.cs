@@ -24,11 +24,14 @@ public class GameState : MonoBehaviour
 	public int ballCursor = 0;
 	[HideInInspector]
 	public bool isGameOver = false;
+	[HideInInspector]
+	public int musicSetIndex = 0;
 
 	bool GrainPlayed = false;
 	void Awake()
 	{
 		audioSource = GetComponent<AudioSource> ();
+		musicSetIndex = Random.Range (0, 2);
 	}
 
 	// Use this for initialization

@@ -134,7 +134,7 @@ public class BallController : MonoBehaviour {
 
 	public void GameStart()
 	{
-		audioSource.clip = uniqueLoops[uniqueIndex];
+		audioSource.clip = uniqueLoops[GameState.Instance.musicSetIndex * 2 + uniqueIndex];
 		audioSource.Play ();
 	}
 
