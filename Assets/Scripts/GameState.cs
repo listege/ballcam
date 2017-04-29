@@ -66,7 +66,7 @@ public class GameState : MonoBehaviour
 					cameraController = controller;
 			}
 			// 대략 0.8 이상 정도면 보인다고 생각하면 될 듯
-			Debug.Log(playingController.CheckAngle (cameraController));
+			//Debug.Log(playingController.CheckAngle (cameraController));
 			yield return null;
 		}
 	}

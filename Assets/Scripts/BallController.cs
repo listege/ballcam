@@ -23,9 +23,9 @@ public class BallController : MonoBehaviour {
 		camera = cameraTransform.GetComponent<Camera> ();
 
 		// 모양 설정은 여기서
-		Transform childTransform = transform.FindChild("Sphere");
-		MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
-		renderer.material.color = uniqueColors [uniqueIndex];
+		//Transform childTransform = transform.FindChild("toungue");
+		//MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
+		//renderer.material.color = uniqueColors [uniqueIndex];
 	}
 	
 	void FixedUpdate ()
@@ -44,6 +44,8 @@ public class BallController : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
 			power.z = -amplitude;
 		}
+
+
 
 		rbd.AddForce (power);
 	}
