@@ -29,7 +29,6 @@ public class GameState : MonoBehaviour
 	void Awake()
 	{
 		audioSource = GetComponent<AudioSource> ();
-		audioSource.Play ();
 	}
 
 	// Use this for initialization
@@ -40,11 +39,31 @@ public class GameState : MonoBehaviour
 		BallController[] foundControllers = FindObjectsOfType<BallController> ();
 		foreach (BallController foundController in foundControllers) {
 			ballControllers [foundController.uniqueIndex] = foundController;
+			foundController.Activate (false, true);
+		}
+
+		StartCoroutine ("Coroutine_Overview");
+		//InvokeRepeating ("ChangeCam", timer, timer);
+	}
+
+	IEnumerator Coroutine_Overview()
+	{
+		Vector3 pos = endingCamera.transform.localPosition;
+		pos.y = 25;
+		endingCamera.transform.localPosition = pos;
+		endingCamera.gameObject.SetActive (true);
+
+		yield return new WaitForSeconds (4.0f);
+		audioSource.Play ();
+		endingCamera.gameObject.SetActive (false);
+		BallController[] foundControllers = FindObjectsOfType<BallController> ();
+		foreach (BallController foundController in foundControllers) {
+			ballControllers [foundController.uniqueIndex] = foundController;
 			foundController.Activate (foundController.uniqueIndex == 0);
+			foundController.GameStart ();
 		}
 
 		StartCoroutine ("Coroutine_ChangeCam");
-		//InvokeRepeating ("ChangeCam", timer, timer);
 	}
 
 	IEnumerator Coroutine_ChangeCam()

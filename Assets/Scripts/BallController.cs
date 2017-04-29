@@ -25,14 +25,13 @@ public class BallController : MonoBehaviour {
 		rbd = GetComponent<Rigidbody> ();
 		Transform cameraTransform = transform.FindChild ("Camera_1");
 		camera = cameraTransform.GetComponent<Camera> ();
-		Transform childTransform = transform.FindChild("toungue");
-		audioSource = childTransform.GetComponent<AudioSource> ();
+		//Transform childTransform = transform.FindChild("toungue");
+		//audioSource = childTransform.GetComponent<AudioSource> ();
+		audioSource = GetComponent<AudioSource> ();
 		// 모양 설정은 여기서
 		//Transform childTransform = transform.FindChild("toungue");
 		//MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
 		//renderer.material.color = uniqueColors [uniqueIndex];
-		audioSource.clip = uniqueLoops[uniqueIndex];
-		audioSource.Play ();
 	}
 	
 	void FixedUpdate ()
@@ -115,20 +114,29 @@ public class BallController : MonoBehaviour {
 		return camera.gameObject.activeSelf;
 	}
 
-	public void Activate(bool state)
+	public void Activate(bool state, bool forceTurnOffCamera = false)
 	{
 		isPlaying = state;
 		// TEMP
 		Transform childTransform = transform.FindChild("toungue");
-		if (isPlaying == true)
+		if (isPlaying == true || forceTurnOffCamera == true)
 			childTransform.gameObject.SetActive (true);
 		else
 			childTransform.gameObject.SetActive (false);
 		// TEMP
-		camera.gameObject.SetActive (!state);
+		if(forceTurnOffCamera == true)
+			camera.gameObject.SetActive (false);
+		else
+			camera.gameObject.SetActive (!state);
 
 		UnityStandardAssets.ImageEffects.NoiseAndGrain noise = camera.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
 		noise.intensityMultiplier = 0f;
+	}
+
+	public void GameStart()
+	{
+		audioSource.clip = uniqueLoops[uniqueIndex];
+		audioSource.Play ();
 	}
 
 	public void GameOver()
@@ -139,8 +147,25 @@ public class BallController : MonoBehaviour {
 		// TEMP
 		Transform childTransform = transform.FindChild("toungue");
 		childTransform.gameObject.SetActive (true);
+		//StartCoroutine ("Corotuine_ToungueDance");
 		// TEMP
 	}
+
+	/*
+	IEnumerator Corotuine_ToungueDance()
+	{
+		Transform childTransform = transform.FindChild("toungue");
+		childTransform = childTransform.FindChild ("Armature");
+		childTransform = childTransform.FindChild ("Bone.001");
+		Rigidbody body = childTransform.GetComponent<Rigidbody> ();
+		while (true)
+		{
+			Vector3 forceDirection = Random.onUnitSphere;
+			body.AddForce (forceDirection * 20);
+			yield return new WaitForSeconds (Random.Range (0.2f, 0.4f));
+		}
+	}
+	*/
 
 	public float CheckAngle(BallController otherController)
 	{
