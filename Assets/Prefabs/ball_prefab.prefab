@@ -396,7 +396,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -782,6 +782,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3d00af8753d6243a688f3073e91bbc1d, type: 3}
   clamp: 0.1
   amplitude: 4
+  Tongue: {fileID: 0}
 --- !u!124 &124474724932675822
 Behaviour:
   m_ObjectHideFlags: 1
