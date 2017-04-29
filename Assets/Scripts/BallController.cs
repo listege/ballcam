@@ -28,9 +28,8 @@ public class BallController : MonoBehaviour {
 		renderer.material.color = uniqueColors [uniqueIndex];
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
+	void FixedUpdate ()
+	{
 		if (!isPlaying)
 			return;
 
@@ -104,5 +103,15 @@ public class BallController : MonoBehaviour {
 	{
 		isPlaying = false;
 		camera.gameObject.SetActive (false);
+	}
+
+	public float CheckAngle(BallController otherController)
+	{
+		// 두 오브젝트 위치 벡터
+		Vector3 directionVector = (otherController.transform.localPosition - transform.localPosition).normalized;
+		// 카메라 전방 벡터
+		Vector3 cameraFrontVector = camera.transform.forward;
+
+		return Vector3.Dot (directionVector, cameraFrontVector);
 	}
 }
