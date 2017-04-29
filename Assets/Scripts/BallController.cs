@@ -23,9 +23,9 @@ public class BallController : MonoBehaviour {
 		camera = cameraTransform.GetComponent<Camera> ();
 
 		// 모양 설정은 여기서
-		Transform childTransform = transform.FindChild("Sphere");
-		MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
-		renderer.material.color = uniqueColors [uniqueIndex];
+		//Transform childTransform = transform.FindChild("Sphere");
+		//MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
+		//renderer.material.color = uniqueColors [uniqueIndex];
 	}
 	
 	void FixedUpdate ()
@@ -103,6 +103,7 @@ public class BallController : MonoBehaviour {
 	{
 		isPlaying = false;
 		camera.gameObject.SetActive (false);
+		rbd.isKinematic = true;
 	}
 
 	public float CheckAngle(BallController otherController)

@@ -47,7 +47,8 @@ public class GameState : MonoBehaviour
 			int minutes = (int)(playingTime / 60);
 			int seconds = (int)(playingTime - minutes * 60);
 			int milliseconds = (int)((playingTime - minutes * 60 - seconds) * 1000);
-			playingTimeText.text = string.Format ("{0:D2}:{1:D2}.{2:D3}", minutes, seconds, milliseconds);
+			if(playingTimeText != null)
+				playingTimeText.text = string.Format ("{0:D2}:{1:D2}.{2:D3}", minutes, seconds, milliseconds);
 
 			if (playingTime > (tickCount + 1) * timer)
 			{
@@ -86,10 +87,16 @@ public class GameState : MonoBehaviour
 		foreach (BallController controllers in ballControllers)
 			controllers.GameOver ();
 		isGameOver = true;
-		StartCoroutine ("Coroutine_Ending");
+		StartCoroutine ("Coroutine_EndingObject");
+		StartCoroutine ("Coroutine_EndingCamera");
 	}
 
-	IEnumerator Coroutine_Ending()
+	IEnumerator Coroutine_EndingObject()
+	{
+		yiend return null;
+	}
+
+	IEnumerator Coroutine_EndingCamera()
 	{
 		const float cameraRotationSpeed = 60f;
 		Vector3 cameraPosition = Vector3.zero;
