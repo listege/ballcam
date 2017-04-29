@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -28,7 +29,6 @@ public class GameState : MonoBehaviour
 	void Awake()
 	{
 		audioSource = GetComponent<AudioSource> ();
-		audioSource.Play ();
 	}
 
 	// Use this for initialization
@@ -39,11 +39,31 @@ public class GameState : MonoBehaviour
 		BallController[] foundControllers = FindObjectsOfType<BallController> ();
 		foreach (BallController foundController in foundControllers) {
 			ballControllers [foundController.uniqueIndex] = foundController;
+			foundController.Activate (false, true);
+		}
+
+		StartCoroutine ("Coroutine_Overview");
+		//InvokeRepeating ("ChangeCam", timer, timer);
+	}
+
+	IEnumerator Coroutine_Overview()
+	{
+		Vector3 pos = endingCamera.transform.localPosition;
+		pos.y = 25;
+		endingCamera.transform.localPosition = pos;
+		endingCamera.gameObject.SetActive (true);
+
+		yield return new WaitForSeconds (4.0f);
+		audioSource.Play ();
+		endingCamera.gameObject.SetActive (false);
+		BallController[] foundControllers = FindObjectsOfType<BallController> ();
+		foreach (BallController foundController in foundControllers) {
+			ballControllers [foundController.uniqueIndex] = foundController;
 			foundController.Activate (foundController.uniqueIndex == 0);
+			foundController.GameStart ();
 		}
 
 		StartCoroutine ("Coroutine_ChangeCam");
-		//InvokeRepeating ("ChangeCam", timer, timer);
 	}
 
 	IEnumerator Coroutine_ChangeCam()
@@ -120,8 +140,15 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_EndingObject()
 	{
-		ballControllers [0].LookAt (ballControllers[1].transform.localPosition);
-		ballControllers [1].LookAt (ballControllers[0].transform.localPosition);
+		Vector3 direction = (ballControllers [0].transform.localPosition - ballControllers [1].transform.localPosition).normalized;
+		ballControllers [0].LookAt (
+			ballControllers[0].transform.localPosition + (ballControllers[0].transform.localPosition - (ballControllers [1].transform.localPosition) - new Vector3(0, 1, 0)),
+			direction
+		);
+		ballControllers [1].LookAt (
+			ballControllers[1].transform.localPosition + (ballControllers[1].transform.localPosition - (ballControllers [0].transform.localPosition) - new Vector3(0, 1, 0)),
+			-direction
+		);
 
 		yield return null;
 	}
@@ -142,6 +169,12 @@ public class GameState : MonoBehaviour
 		{
 			rotation += cameraRotationSpeed * Time.deltaTime;
 			endingCamera.transform.localRotation = Quaternion.Euler(90, rotation, 0);
+			if (Input.anyKeyDown)
+			{
+				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
+				SceneManager.LoadScene (sceneIndex + 1);
+			}
+				
 			yield return null;
 		}
 	}

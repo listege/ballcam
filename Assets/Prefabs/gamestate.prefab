@@ -137,6 +137,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   playingTime: 0
   timer: 15
+  pretimer: 1
   ballControllers:
   - {fileID: 0}
   - {fileID: 0}

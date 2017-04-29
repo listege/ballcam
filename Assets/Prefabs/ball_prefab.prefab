@@ -89,7 +89,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4626658884160354}
   - component: {fileID: 111153850932041604}
-  - component: {fileID: 82114921096961974}
   m_Layer: 0
   m_Name: toungue
   m_TagString: Untagged
@@ -213,6 +212,7 @@ GameObject:
   - component: {fileID: 23482495829000854}
   - component: {fileID: 54018516827374594}
   - component: {fileID: 114840092107110552}
+  - component: {fileID: 82013284030787370}
   m_Layer: 10
   m_Name: ball_prefab
   m_TagString: Untagged
@@ -403,7 +403,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -634,12 +634,12 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1608364433632778}
   m_Enabled: 1
---- !u!82 &82114921096961974
+--- !u!82 &82013284030787370
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1226756424930364}
+  m_GameObject: {fileID: 1885103612203312}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
