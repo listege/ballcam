@@ -10,6 +10,8 @@ public class GameState : MonoBehaviour
 	public Camera endingCamera = null;
 	public Text playingTimeText = null;
 	[HideInInspector]
+	public AudioSource audioSource = null;
+	[HideInInspector]
 	public float playingTime = 0;
 
 	public float timer = 5f;
@@ -22,7 +24,15 @@ public class GameState : MonoBehaviour
 	[HideInInspector]
 	public bool isGameOver = false;
 
+<<<<<<< HEAD
 	bool GrainPlayed = false;
+=======
+	void Awake()
+	{
+		audioSource = GetComponent<AudioSource> ();
+		audioSource.Play ();
+	}
+>>>>>>> 4531b8a2ca763f2ed6b8caf466b548248b003233
 
 	// Use this for initialization
 	void Start ()
@@ -75,7 +85,7 @@ public class GameState : MonoBehaviour
 					cameraController = controller;
 			}
 			// 대략 0.8 이상 정도면 보인다고 생각하면 될 듯
-			//Debug.Log(playingController.CheckAngle (cameraController));
+			audioSource.volume = Mathf.Max(0, (playingController.CheckAngle (cameraController) - 0.6f) * 2.5f);
 			yield return null;
 		}
 	}
@@ -103,6 +113,9 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_EndingObject()
 	{
+		ballControllers [0].LookAt (ballControllers[1].transform.localPosition);
+		ballControllers [1].LookAt (ballControllers[0].transform.localPosition);
+
 		yield return null;
 	}
 
