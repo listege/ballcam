@@ -53,22 +53,35 @@ public class BallController : MonoBehaviour {
 	protected int _slipperyCount = 0;
 	void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.layer == 8)
+		switch (collision.gameObject.layer)
+		{
+		case 8:
 			_stickyCount++;
-		else if (collision.gameObject.layer == 9)
+			RecalcDrag ();
+			break;
+		case 9:
 			_slipperyCount++;
-
-		RecalcDrag ();
+			RecalcDrag ();
+			break;
+		case 10:
+			GameState.Instance.GameOver ();
+			break;
+		}
 	}
 
 	void OnCollisionExit(Collision collision)
 	{
-		if (collision.gameObject.layer == 8)
+		switch (collision.gameObject.layer)
+		{
+		case 8:
 			_stickyCount--;
-		else if (collision.gameObject.layer == 9)
+			RecalcDrag ();
+			break;
+		case 9:
 			_slipperyCount--;
-
-		RecalcDrag ();
+			RecalcDrag ();
+			break;
+		}
 	}
 
 	protected void RecalcDrag()
@@ -85,5 +98,11 @@ public class BallController : MonoBehaviour {
 	{
 		isPlaying = state;
 		camera.gameObject.SetActive (!state);
+	}
+
+	public void GameOver()
+	{
+		isPlaying = false;
+		camera.gameObject.SetActive (false);
 	}
 }
