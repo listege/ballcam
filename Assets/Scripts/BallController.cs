@@ -149,8 +149,37 @@ public class BallController : MonoBehaviour {
 		// TEMP
 		Transform childTransform = transform.FindChild("toungue");
 		childTransform.gameObject.SetActive (true);
+		StartCoroutine ("Coroutine_ToungueRoot");
 		StartCoroutine ("Corotuine_ToungueDance");
 		// TEMP
+	}
+
+	IEnumerator Coroutine_ToungueRoot()
+	{
+		Transform childTransform = transform.FindChild("toungue");
+		Vector3 startAngle = new Vector3(0, 0.42f, 0);
+		while (true)
+		{
+			Vector3 targetAngle = new Vector3(Random.Range (-10f, 10f), 0.42f, Random.Range (-6f, 6f));
+			float distance = Vector2.Distance (startAngle, targetAngle);
+			while (distance < 7.0f)
+			{
+				targetAngle = new Vector3(Random.Range (-10f, 10f), 0.42f, Random.Range (-6f, 6f));
+				distance = Vector2.Distance (startAngle, targetAngle);
+			}
+
+			float estimateTime = (distance / 60.0f) * Random.Range(0.8f, 1.1f);
+			for (float timer = 0; timer <= estimateTime; timer += Time.deltaTime)
+			{
+				float progress = Mathf.Clamp01(timer / estimateTime);
+				Vector3 newRotation = startAngle * (1 - progress) + targetAngle * progress;
+				childTransform.localRotation = Quaternion.Euler(newRotation.x, 0.42f, newRotation.z);
+				yield return null;
+			}
+
+			startAngle = targetAngle;
+			yield return new WaitForSeconds (Random.Range (0.1f, 0.15f));
+		}
 	}
 
 	IEnumerator Corotuine_ToungueDance()
@@ -167,7 +196,7 @@ public class BallController : MonoBehaviour {
 		{
 			{
 				Vector3 forceDirection = Random.onUnitSphere;
-				body1.AddForce (forceDirection * 600);
+				body1.AddForce (forceDirection * 500);
 				if (body1.velocity.magnitude > 2f)
 					body1.velocity = body1.velocity.normalized * 2f;
 			}
@@ -175,7 +204,7 @@ public class BallController : MonoBehaviour {
 
 			{
 				Vector3 forceDirection = Random.onUnitSphere;
-				body2.AddForce (forceDirection * 600);
+				body2.AddForce (forceDirection * 500);
 				if (body2.velocity.magnitude > 2f)
 					body2.velocity = body2.velocity.normalized * 2f;
 			}
