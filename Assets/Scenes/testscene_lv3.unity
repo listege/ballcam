@@ -249,6 +249,16 @@ Prefab:
       propertyPath: m_Name
       value: gamestate
       objectReference: {fileID: 0}
+    - target: {fileID: 114236003256837012, guid: 7749bceefbdf9416d87c10fe6f247286,
+        type: 2}
+      propertyPath: endingCamera
+      value: 
+      objectReference: {fileID: 1429524088}
+    - target: {fileID: 114236003256837012, guid: 7749bceefbdf9416d87c10fe6f247286,
+        type: 2}
+      propertyPath: playingTimeText
+      value: 
+      objectReference: {fileID: 1496532760}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7749bceefbdf9416d87c10fe6f247286, type: 2}
   m_IsPrefabParent: 0
