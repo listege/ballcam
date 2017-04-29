@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 6
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -71,22 +71,9 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
-    m_MixedBakeMode: 3
-    m_BakeBackend: 0
-    m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
-    m_PVRBounces: 2
-    m_PVRFiltering: 0
-    m_PVRFilteringMode: 1
-    m_PVRCulling: 1
-    m_PVRFilteringGaussRadiusDirect: 1
-    m_PVRFilteringGaussRadiusIndirect: 5
-    m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_StationaryBakeMode: 3
   m_LightingDataAsset: {fileID: 0}
+  m_RuntimeCPUUsage: 25
   m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
@@ -108,6 +95,25 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &90708435 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1608364433632778, guid: 854f31fedf3744f0890dc4683d169073,
+    type: 2}
+  m_PrefabInternal: {fileID: 322063734}
+--- !u!114 &90708437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 90708435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478a2083ad114a07d000fbfb8d76c639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: e9ba2083ad114a07d000fbfb8d76c639, type: 3}
+  blurAmount: 0.8
+  extraBlur: 0
 --- !u!1 &224221865
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +250,30 @@ Prefab:
     - target: {fileID: 4077422703237420, guid: 854f31fedf3744f0890dc4683d169073, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608364433632778, guid: 854f31fedf3744f0890dc4683d169073, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20372323841230314, guid: 854f31fedf3744f0890dc4683d169073,
+        type: 2}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 20372323841230314, guid: 854f31fedf3744f0890dc4683d169073,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.36391655
+      objectReference: {fileID: 0}
+    - target: {fileID: 20372323841230314, guid: 854f31fedf3744f0890dc4683d169073,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.37394574
+      objectReference: {fileID: 0}
+    - target: {fileID: 20372323841230314, guid: 854f31fedf3744f0890dc4683d169073,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.3897059
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 854f31fedf3744f0890dc4683d169073, type: 2}
@@ -474,7 +504,8 @@ MonoBehaviour:
   endingCamera: {fileID: 1429524088}
   playingTimeText: {fileID: 1496532760}
   playingTime: 0
-  timer: 15
+  timer: 5
+  pretimer: 1.2
   ballControllers:
   - {fileID: 0}
   - {fileID: 0}
@@ -843,6 +874,11 @@ Prefab:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 20372323841230314, guid: 854f31fedf3744f0890dc4683d169073,
+        type: 2}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 854f31fedf3744f0890dc4683d169073, type: 2}
   m_IsPrefabParent: 0
@@ -1071,7 +1107,7 @@ Canvas:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1511978359}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -1080,7 +1116,6 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1311,8 +1346,7 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_CCT: 6500
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1943038873
@@ -1328,3 +1362,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &2060891040 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1608364433632778, guid: 854f31fedf3744f0890dc4683d169073,
+    type: 2}
+  m_PrefabInternal: {fileID: 1385743273}
+--- !u!114 &2060891046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2060891040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9191284b058eef549b7108b5f04e1117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intensityMultiplier: 0.1
+  generalIntensity: 0.1
+  blackIntensity: 1
+  whiteIntensity: 1
+  midGrey: 0.2
+  dx11Grain: 0
+  softness: 0
+  monochrome: 0
+  intensities: {x: 1, y: 1, z: 1}
+  tiling: {x: 64, y: 64, z: 64}
+  monochromeTiling: 64
+  filterMode: 1
+  noiseTexture: {fileID: 2800000, guid: 7a632f967e8ad42f5bd275898151ab6a, type: 3}
+  noiseShader: {fileID: 4800000, guid: b0249d8c935344451aa4de6db76f0688, type: 3}
+  dx11NoiseShader: {fileID: 4800000, guid: 8b30686bb4322ab42ad5eb50a0210b58, type: 3}

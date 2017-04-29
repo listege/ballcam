@@ -13,12 +13,16 @@ public class GameState : MonoBehaviour
 	public float playingTime = 0;
 
 	public float timer = 5f;
+	public float pretimer = 1f;
+
 	[HideInInspector]
 	public BallController[] ballControllers = new BallController[2];
 	[HideInInspector]
 	public int ballCursor = 0;
 	[HideInInspector]
 	public bool isGameOver = false;
+
+	bool GrainPlayed = false;
 
 	// Use this for initialization
 	void Start ()
@@ -50,6 +54,10 @@ public class GameState : MonoBehaviour
 			if(playingTimeText != null)
 				playingTimeText.text = string.Format ("{0:D2}:{1:D2}.{2:D3}", minutes, seconds, milliseconds);
 
+			if (playingTime > (tickCount + 1) * timer - pretimer) {
+				StartWarningVisualFeedBack ();
+			}
+
 			if (playingTime > (tickCount + 1) * timer)
 			{
 				ChangeCam ();
@@ -77,6 +85,8 @@ public class GameState : MonoBehaviour
 		ballCursor = (ballCursor + 1) % ballControllers.Length;
 		for (int i = 0; i < ballControllers.Length; i++)
 			ballControllers [i].Activate (i == ballCursor);
+
+		GrainPlayed = false;
 	}
 
 	public void GameOver()
@@ -112,6 +122,42 @@ public class GameState : MonoBehaviour
 		{
 			rotation += cameraRotationSpeed * Time.deltaTime;
 			endingCamera.transform.localRotation = Quaternion.Euler(90, rotation, 0);
+			yield return null;
+		}
+	}
+
+	void StartWarningVisualFeedBack(){
+		if (!GrainPlayed) {
+			
+			Camera cam = null;
+			foreach (BallController bc in ballControllers){
+				if (bc.IsActive ()) {
+					cam = bc.GetCamera ();
+					break;
+				}
+			}
+
+			if (!cam)
+				return;
+			
+			StartCoroutine (Coroutine_StartNoiseGrain (cam));
+			GrainPlayed = true;
+		}
+	}
+
+	IEnumerator Coroutine_StartNoiseGrain(Camera cam)
+	{
+		
+		UnityStandardAssets.ImageEffects.NoiseAndGrain noise = cam.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
+
+		float start = noise.intensityMultiplier;
+		float starttime = 0f;
+
+		while (starttime < 1f)
+		{
+			starttime += Time.deltaTime;
+			noise.intensityMultiplier = Mathf.Lerp (start, 7.5f, starttime);
+
 			yield return null;
 		}
 	}

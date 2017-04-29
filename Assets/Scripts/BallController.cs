@@ -14,12 +14,14 @@ public class BallController : MonoBehaviour {
 
 	AudioSource audioSource = null;
 	Rigidbody rbd;
+	GameState gamestate;
 	Camera camera;
 	float x;
 	float y;
 
 	void Awake ()
 	{
+		gamestate = GameObject.Find ("gamestate").GetComponent<GameState>();
 		rbd = GetComponent<Rigidbody> ();
 		Transform cameraTransform = transform.FindChild ("Camera_1");
 		camera = cameraTransform.GetComponent<Camera> ();
@@ -49,8 +51,6 @@ public class BallController : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.RightArrow)) {
 			power.z = -amplitude;
 		}
-
-
 
 		rbd.AddForce (power);
 	}
@@ -100,10 +100,22 @@ public class BallController : MonoBehaviour {
 			rbd.drag = 2;
 	}
 
+	public Camera GetCamera(){
+		return camera;
+	}
+
+	public bool IsActive()
+	{
+		return camera.gameObject.activeSelf;
+	}
+
 	public void Activate(bool state)
 	{
 		isPlaying = state;
 		camera.gameObject.SetActive (!state);
+
+		UnityStandardAssets.ImageEffects.NoiseAndGrain noise = camera.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
+		noise.intensityMultiplier = 0f;
 	}
 
 	public void GameOver()
