@@ -128,6 +128,7 @@ public class BallController : MonoBehaviour {
 	{
 		isPlaying = false;
 		camera.gameObject.SetActive (false);
+		audioSource.spatialBlend = 0;
 	}
 
 	public float CheckAngle(BallController otherController)
