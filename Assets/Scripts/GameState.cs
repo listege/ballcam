@@ -90,8 +90,18 @@ public class GameState : MonoBehaviour
 	void ChangeCam()
 	{
 		ballCursor = (ballCursor + 1) % ballControllers.Length;
-		for (int i = 0; i < ballControllers.Length; i++)
+		for (int i = 0; i < ballControllers.Length; i++) {
 			ballControllers [i].Activate (i == ballCursor);
+		}
+
+		/* hardcoded tongue fix */
+		if (ballControllers [0].IsActive ()) {
+			ballControllers [0].Tongue.SetActive (false);
+			ballControllers [1].Tongue.SetActive (true);
+		} else {
+			ballControllers [1].Tongue.SetActive (false);
+			ballControllers [0].Tongue.SetActive (true);
+		}
 
 		GrainPlayed = false;
 	}
