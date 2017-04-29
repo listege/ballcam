@@ -30,8 +30,7 @@ public class BallController : MonoBehaviour {
 		audioSource = GetComponent<AudioSource> ();
 		// 모양 설정은 여기서
 		//Transform childTransform = transform.FindChild("toungue");
-		//MeshRenderer renderer = childTransform.GetComponent<MeshRenderer> ();
-		//renderer.material.color = uniqueColors [uniqueIndex];
+		//childTransform.gameObject.layer = 11 + uniqueIndex;
 	}
 	
 	void FixedUpdate ()
@@ -142,30 +141,46 @@ public class BallController : MonoBehaviour {
 	public void GameOver()
 	{
 		isPlaying = false;
+		rbd.isKinematic = true;
 		camera.gameObject.SetActive (false);
 		audioSource.spatialBlend = 0;
 		// TEMP
 		Transform childTransform = transform.FindChild("toungue");
 		childTransform.gameObject.SetActive (true);
-		//StartCoroutine ("Corotuine_ToungueDance");
+		StartCoroutine ("Corotuine_ToungueDance");
 		// TEMP
 	}
 
-	/*
 	IEnumerator Corotuine_ToungueDance()
 	{
 		Transform childTransform = transform.FindChild("toungue");
+		ChangeLayerRecursively (childTransform, 12);
 		childTransform = childTransform.FindChild ("Armature");
 		childTransform = childTransform.FindChild ("Bone.001");
-		Rigidbody body = childTransform.GetComponent<Rigidbody> ();
+		Rigidbody body1 = childTransform.GetComponent<Rigidbody> ();
+		childTransform = childTransform.parent.FindChild ("Bone.005");
+		Rigidbody body2 = childTransform.GetComponent<Rigidbody> ();
+		float maxSpeed = 0;
 		while (true)
 		{
-			Vector3 forceDirection = Random.onUnitSphere;
-			body.AddForce (forceDirection * 20);
-			yield return new WaitForSeconds (Random.Range (0.2f, 0.4f));
+			{
+				Vector3 forceDirection = Random.onUnitSphere;
+				body1.AddForce (forceDirection * 600);
+				if (body1.velocity.magnitude > 2f)
+					body1.velocity = body1.velocity.normalized * 2f;
+			}
+			yield return new WaitForSeconds (Random.Range (0.2f, 0.3f));
+
+			{
+				Vector3 forceDirection = Random.onUnitSphere;
+				body2.AddForce (forceDirection * 600);
+				if (body2.velocity.magnitude > 2f)
+					body2.velocity = body2.velocity.normalized * 2f;
+			}
+
+			yield return new WaitForSeconds (Random.Range (0.4f, 0.55f));
 		}
 	}
-	*/
 
 	public float CheckAngle(BallController otherController)
 	{
@@ -177,8 +192,20 @@ public class BallController : MonoBehaviour {
 		return Vector3.Dot (directionVector, cameraFrontVector);
 	}
 
-	public void LookAt(Vector3 position)
+	public void LookAt(Vector3 lookPosition, Vector3 moveDirection)
 	{
-		transform.LookAt (position);
+		transform.LookAt (lookPosition);
+		Vector3 newPositon = transform.localPosition;
+		newPositon += moveDirection * 0.2f;
+		transform.localPosition = newPositon;
+	}
+
+	protected void ChangeLayerRecursively(Transform targetTransform, int layer)
+	{
+		targetTransform.gameObject.layer = layer;
+		foreach (Transform child in targetTransform)
+		{
+			ChangeLayerRecursively(child, layer);
+		}
 	}
 }

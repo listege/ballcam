@@ -130,8 +130,15 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_EndingObject()
 	{
-		ballControllers [0].LookAt (ballControllers[0].transform.localPosition + (ballControllers[0].transform.localPosition - (ballControllers [1].transform.localPosition) - new Vector3(0, 1, 0)));
-		ballControllers [1].LookAt (ballControllers[1].transform.localPosition + (ballControllers[1].transform.localPosition - (ballControllers [0].transform.localPosition) - new Vector3(0, 1, 0)));
+		Vector3 direction = (ballControllers [0].transform.localPosition - ballControllers [1].transform.localPosition).normalized;
+		ballControllers [0].LookAt (
+			ballControllers[0].transform.localPosition + (ballControllers[0].transform.localPosition - (ballControllers [1].transform.localPosition) - new Vector3(0, 1, 0)),
+			direction
+		);
+		ballControllers [1].LookAt (
+			ballControllers[1].transform.localPosition + (ballControllers[1].transform.localPosition - (ballControllers [0].transform.localPosition) - new Vector3(0, 1, 0)),
+			-direction
+		);
 
 		yield return null;
 	}
