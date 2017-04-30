@@ -24,6 +24,7 @@ public class GameState : MonoBehaviour
 	public AudioSource audioSource = null;
 	[HideInInspector]
 	public float playingTime = 0;
+    public AudioSource noiseAudioSource = null;
 
 	public float timer = 5f;
 	public float pretimer = 1f;
@@ -309,16 +310,16 @@ public class GameState : MonoBehaviour
 
 			if (!cam)
 				return;
-			
-			StartCoroutine (Coroutine_StartNoiseGrain (cam));
+
+            noiseAudioSource.Play();
+            StartCoroutine (Coroutine_StartNoiseGrain (cam));
 			GrainPlayed = true;
 		}
 	}
 
 	IEnumerator Coroutine_StartNoiseGrain(Camera cam)
 	{
-		
-		UnityStandardAssets.ImageEffects.NoiseAndGrain noise = cam.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
+        UnityStandardAssets.ImageEffects.NoiseAndGrain noise = cam.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
 
 		float start = noise.intensityMultiplier;
 		float starttime = 0f;
