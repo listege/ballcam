@@ -13,6 +13,8 @@ public class GameState : MonoBehaviour
 	[HideInInspector]
 	public Text playingTimeText = null;
 	[HideInInspector]
+	public Text bestTimeText = null;
+	[HideInInspector]
 	public Image resetTimerImage = null;
 	[HideInInspector]
 	public AudioSource audioSource = null;
@@ -57,7 +59,15 @@ public class GameState : MonoBehaviour
 			case "Canvas":
 				playingTimeText = rootObject.transform.FindChild ("TimeText").GetComponent<Text> ();
 				playingTimeText.text = string.Format ("Stage {0}", SceneManager.GetActiveScene ().buildIndex);
-				resetTimerImage = rootObject.transform.FindChild ("ResetImage").GetComponent<Image>();
+				resetTimerImage = rootObject.transform.FindChild ("ResetImage").GetComponent<Image> ();
+				bestTimeText = rootObject.transform.FindChild ("BestText").GetComponent<Text> ();
+				if (PlayerPrefs.HasKey (SceneManager.GetActiveScene ().name))
+				{
+					float bestTime = PlayerPrefs.GetFloat (SceneManager.GetActiveScene ().name);
+					int minutes = (int)(bestTime / 60);
+					int seconds = (int)(bestTime - minutes * 60);
+					bestTimeText.text = string.Format("BEST {0:D2}:{1:D2}", minutes, seconds);
+				}
 				break;
 			}
 		}
@@ -182,6 +192,14 @@ public class GameState : MonoBehaviour
 		isGameOver = true;
 		StartCoroutine ("Coroutine_EndingObject");
 		StartCoroutine ("Coroutine_EndingCamera");
+		float lastBest = PlayerPrefs.GetFloat (SceneManager.GetActiveScene ().name, -1);
+		if (lastBest < 0 || playingTime < lastBest)
+		{
+			PlayerPrefs.SetFloat (SceneManager.GetActiveScene ().name, playingTime);
+			int minutes = (int)(playingTime / 60);
+			int seconds = (int)(playingTime - minutes * 60);
+			bestTimeText.text = string.Format("BEST {0:D2}:{1:D2}", minutes, seconds);
+		}
 	}
 
 	IEnumerator Coroutine_EndingObject()
