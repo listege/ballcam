@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.13721886, g: 0.30149594, b: 0.6911765, a: 1}
+  m_AmbientSkyColor: {r: 0.8308824, g: 0.7263058, b: 0.38489407, a: 1}
   m_AmbientEquatorColor: {r: 0, g: 0.54489136, b: 0.9411765, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0.41911763, b: 0.1416329, a: 1}
   m_AmbientIntensity: 1
@@ -279,17 +279,17 @@ Prefab:
     - target: {fileID: 20005332470479316, guid: eaa839a8f671647569d4b761c359eb7d,
         type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 0.03985199
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 20005332470479316, guid: eaa839a8f671647569d4b761c359eb7d,
         type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 0.032871973
+      value: 0.7830629
       objectReference: {fileID: 0}
     - target: {fileID: 20005332470479316, guid: eaa839a8f671647569d4b761c359eb7d,
         type: 2}
       propertyPath: m_BackGroundColor.b
-      value: 0.2352941
+      value: 0.31617647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eaa839a8f671647569d4b761c359eb7d, type: 2}
@@ -439,7 +439,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 263bf85463c6042e79ce018d60430101, type: 2}
+  - {fileID: 2100000, guid: ab29fa93e01774ed0a06614c61033967, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -831,7 +831,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0625e231750ac4bb293536d0a36009b3, type: 2}
+  - {fileID: 2100000, guid: 0f9b53d93ca8347b191281fedd6bf230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -928,17 +928,17 @@ Prefab:
     - target: {fileID: 20915027905750284, guid: b6593224043b949e0b31c70935d967f5,
         type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 0.06729498
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 20915027905750284, guid: b6593224043b949e0b31c70935d967f5,
         type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 0.05709341
+      value: 0.85172415
       objectReference: {fileID: 0}
     - target: {fileID: 20915027905750284, guid: b6593224043b949e0b31c70935d967f5,
         type: 2}
       propertyPath: m_BackGroundColor.b
-      value: 0.35294116
+      value: 0.36764705
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6593224043b949e0b31c70935d967f5, type: 2}
@@ -990,7 +990,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0625e231750ac4bb293536d0a36009b3, type: 2}
+  - {fileID: 2100000, guid: 0f9b53d93ca8347b191281fedd6bf230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1088,7 +1088,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0625e231750ac4bb293536d0a36009b3, type: 2}
+  - {fileID: 2100000, guid: 0f9b53d93ca8347b191281fedd6bf230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1288,7 +1288,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.110687815, g: 0.081747405, b: 0.46323532, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.94979715, b: 0.27205884, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1535,7 +1535,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0625e231750ac4bb293536d0a36009b3, type: 2}
+  - {fileID: 2100000, guid: 0f9b53d93ca8347b191281fedd6bf230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
