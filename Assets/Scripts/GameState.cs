@@ -64,7 +64,7 @@ public class GameState : MonoBehaviour
 				break;
 			case "Canvas":
 				playingTimeText = rootObject.transform.FindChild ("TimeText").GetComponent<Text> ();
-				playingTimeText.text = string.Format ("Stage {0}", SceneManager.GetActiveScene ().buildIndex);
+				playingTimeText.text = string.Format ("Stage {0}", SceneManager.GetActiveScene ().buildIndex - 2);
 				resetTimerImage = rootObject.transform.FindChild ("ResetImage").GetComponent<Image> ();
 				bestTimeText = rootObject.transform.FindChild ("BestText").GetComponent<Text> ();
 				if (PlayerPrefs.HasKey (SceneManager.GetActiveScene ().name)) {
