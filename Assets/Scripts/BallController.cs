@@ -25,10 +25,14 @@ public class BallController : MonoBehaviour {
 
 	void Awake ()
 	{
-		gamestate = GameObject.Find ("gamestate").GetComponent<GameState>();
+		GameObject go = GameObject.Find ("gamestate");
+		if (go) gamestate = go.GetComponent<GameState>();
+
 		rbd = GetComponent<Rigidbody> ();
+
 		Transform cameraTransform = transform.FindChild ("Camera_1");
-		camera = cameraTransform.GetComponent<Camera> ();
+		if (cameraTransform) camera = cameraTransform.GetComponent<Camera> ();
+
 		//Transform childTransform = transform.FindChild("toungue");
 		//audioSource = childTransform.GetComponent<AudioSource> ();
 		audioSource = GetComponent<AudioSource> ();
