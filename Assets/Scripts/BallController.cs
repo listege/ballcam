@@ -14,6 +14,8 @@ public class BallController : MonoBehaviour {
 
 	public GameObject Tongue;
 
+	public Renderer Lens;
+
 	AudioSource audioSource = null;
 	Rigidbody rbd;
 	GameState gamestate;
@@ -53,7 +55,6 @@ public class BallController : MonoBehaviour {
 			power.z = -amplitude;
 		}
 		*/
-
 
 		power.x = Input.GetAxis ("Vertical") * amplitude;
 		power.z = -Input.GetAxis ("Horizontal") * amplitude;
