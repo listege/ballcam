@@ -201,17 +201,17 @@ public class BallController : MonoBehaviour {
 		{
 			{
 				Vector3 forceDirection = Random.onUnitSphere;
-				body1.AddForce (forceDirection * 400);
-				if (body1.velocity.magnitude > 2f)
-					body1.velocity = body1.velocity.normalized * 2f;
+				body1.AddForce (forceDirection * 200);
+				if (body1.velocity.magnitude > 1.5f)
+					body1.velocity = body1.velocity.normalized * 1.5f;
 			}
 			yield return new WaitForSeconds (Random.Range (0.2f, 0.3f));
 
 			{
 				Vector3 forceDirection = Random.onUnitSphere;
 				body2.AddForce (forceDirection * 400);
-				if (body2.velocity.magnitude > 2f)
-					body2.velocity = body2.velocity.normalized * 2f;
+				if (body2.velocity.magnitude > 1.5f)
+					body2.velocity = body2.velocity.normalized * 1.5f;
 			}
 
 			yield return new WaitForSeconds (Random.Range (0.4f, 0.55f));

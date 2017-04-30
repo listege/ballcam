@@ -246,7 +246,16 @@ public class GameState : MonoBehaviour
 			-direction
 		);
 
-		yield return null;
+		yield return new WaitForSeconds (1.5f);
+		while (true)
+		{
+			if (Input.anyKeyDown)
+			{
+				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
+				SceneManager.LoadScene (sceneIndex + 1);
+			}
+			yield return null;
+		}
 	}
 
 	IEnumerator Coroutine_EndingCamera()
@@ -265,11 +274,6 @@ public class GameState : MonoBehaviour
 		{
 			rotation += cameraRotationSpeed * Time.deltaTime;
 			endingCamera.transform.localRotation = Quaternion.Euler(90, rotation, 0);
-			if (Input.anyKeyDown)
-			{
-				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-				SceneManager.LoadScene (sceneIndex + 1);
-			}
 				
 			yield return null;
 		}
