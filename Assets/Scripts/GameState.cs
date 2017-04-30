@@ -8,6 +8,8 @@ public class GameState : MonoBehaviour
 {
 	static public GameState Instance = null;
 
+	static public bool tutoriallvl1played = false;
+
 	[HideInInspector]
 	public Camera endingCamera = null;
 	[HideInInspector]
@@ -26,6 +28,8 @@ public class GameState : MonoBehaviour
 	public float timer = 5f;
 	public float pretimer = 1f;
 	protected float resetTimer = 0;
+
+	public GameObject tutoriallvl1;
 
 	public arrowpointer arrowhelper;
 
@@ -117,9 +121,8 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_Overview()
 	{
-		Vector3 pos = endingCamera.transform.localPosition;
-		pos.y = 25;
-		endingCamera.transform.localPosition = pos;
+		endingCamera.transform.localPosition = new Vector3 (0, 25, -6);
+		endingCamera.transform.localRotation = Quaternion.Euler (70, 0, 0);
 		endingCamera.gameObject.SetActive (true);
 
 		yield return new WaitForSeconds (4.0f);
@@ -156,8 +159,14 @@ public class GameState : MonoBehaviour
 
 			if (Input.GetKey (KeyCode.Space) == true) {
 				resetTimer += Time.deltaTime;
-				if (resetTimer >= 1.5f)
+				if (resetTimer >= 1.5f) {
+					if (tutoriallvl1) {
+						tutoriallvl1played = true;
+						tutoriallvl1.SetActive (false);
+						
+					}
 					SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+				}
 			} else
 				resetTimer = 0;
 
@@ -252,7 +261,15 @@ public class GameState : MonoBehaviour
 			if (Input.anyKeyDown)
 			{
 				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-				SceneManager.LoadScene (sceneIndex + 1);
+				if(sceneIndex < 15) // 하드코딩
+				{
+					SceneManager.LoadScene (sceneIndex + 1);
+
+				}
+				else
+				{
+					SceneManager.LoadScene (0);	
+				}
 			}
 			yield return null;
 		}
