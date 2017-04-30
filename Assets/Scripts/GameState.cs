@@ -121,9 +121,8 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_Overview()
 	{
-		Vector3 pos = endingCamera.transform.localPosition;
-		pos.y = 25;
-		endingCamera.transform.localPosition = pos;
+		endingCamera.transform.localPosition = new Vector3 (0, 25, -6);
+		endingCamera.transform.localRotation = Quaternion.Euler (70, 0, 0);
 		endingCamera.gameObject.SetActive (true);
 
 		yield return new WaitForSeconds (4.0f);
@@ -262,7 +261,15 @@ public class GameState : MonoBehaviour
 			if (Input.anyKeyDown)
 			{
 				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-				SceneManager.LoadScene (sceneIndex + 1);
+				if(sceneIndex < 15) // 하드코딩
+				{
+					SceneManager.LoadScene (sceneIndex + 1);
+
+				}
+				else
+				{
+					SceneManager.LoadScene (0);	
+				}
 			}
 			yield return null;
 		}

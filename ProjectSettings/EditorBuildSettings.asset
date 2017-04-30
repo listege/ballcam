@@ -7,6 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/titlescene.unity
+    guid: cf8df4276e68f4e65bfc7d4b13941aaa
+  - enabled: 1
+    path: Assets/Scenes/tutorialscene.unity
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/testscene_lv1.unity
@@ -22,13 +25,31 @@ EditorBuildSettings:
     guid: 291abdcc4cf9c40298a62c70e436b72f
   - enabled: 1
     path: Assets/Scenes/testscene_lv5.unity
-    guid: 35a43a40dac7c4a459b8b56db4f64354
-  - enabled: 1
-    path: Assets/Scenes/testscene_lv6.unity
-    guid: a14e3a1bf9a2e4c0caf633375c8a5198
-  - enabled: 1
-    path: Assets/Scenes/testscene_lv7.unity
     guid: 09b6a61b8a2e14a0488ee941b2e6274c
   - enabled: 1
-    path: Assets/Scenes/testscene_lv8.unity
+    path: Assets/Scenes/testscene_lv6.unity
     guid: e1a7c414887a04c4e9295214d1f72dbd
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv7.unity
+    guid: a14e3a1bf9a2e4c0caf633375c8a5198
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv8.unity
+    guid: 1ce6c5ff230f34c3f9e886c9d82b74c4
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv9.unity
+    guid: 34eacb0d4d174459fbe4e197bc51c8cc
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv10.unity
+    guid: cb4715834137e4db9a94f3c63377be5c
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv11.unity
+    guid: 51a6ef6f459c744129a97ae54aad82b4
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv12.unity
+    guid: 35a43a40dac7c4a459b8b56db4f64354
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv13.unity
+    guid: 5fa67116333f34ba88a76b8441bd3607
+  - enabled: 1
+    path: Assets/Scenes/testscene_lv14.unity
+    guid: 681f70f68b36f4be38b45ced0fad412f
