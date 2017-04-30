@@ -8,6 +8,8 @@ public class GameState : MonoBehaviour
 {
 	static public GameState Instance = null;
 
+	static public bool tutoriallvl1played = false;
+
 	[HideInInspector]
 	public Camera endingCamera = null;
 	[HideInInspector]
@@ -26,6 +28,8 @@ public class GameState : MonoBehaviour
 	public float timer = 5f;
 	public float pretimer = 1f;
 	protected float resetTimer = 0;
+
+	public GameObject tutoriallvl1;
 
 	public arrowpointer arrowhelper;
 
@@ -156,8 +160,14 @@ public class GameState : MonoBehaviour
 
 			if (Input.GetKey (KeyCode.Space) == true) {
 				resetTimer += Time.deltaTime;
-				if (resetTimer >= 1.5f)
+				if (resetTimer >= 1.5f) {
+					if (tutoriallvl1) {
+						tutoriallvl1played = true;
+						tutoriallvl1.SetActive (false);
+						
+					}
 					SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+				}
 			} else
 				resetTimer = 0;
 
