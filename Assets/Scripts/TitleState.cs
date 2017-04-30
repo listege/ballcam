@@ -23,7 +23,7 @@ public class TitleState : MonoBehaviour
 	{
 		if (Input.anyKeyDown)
 		{
-			SceneManager.LoadScene ("testscene_lv1");
+			SceneManager.LoadScene ("tutorialscene");
 		}
 	}
 }

@@ -111,7 +111,7 @@ public class GameState : MonoBehaviour
 			float clr_g = Mathf.Lerp (0f, 1f, Mathf.InverseLerp (0.6f, 1f, playingController.CheckAngle (cameraController)));
 			float clr_b = Mathf.Lerp (0.2f, 0.2f, Mathf.InverseLerp (0.6f, 1f, playingController.CheckAngle (cameraController)));
 
-			Debug.Log (Mathf.InverseLerp (-1f, 1f, playingController.CheckAngle (cameraController)));
+			//Debug.Log (Mathf.InverseLerp (-1f, 1f, playingController.CheckAngle (cameraController)));
 
 			playingController.Lens.material.SetColor ("_Color", new Color (clr_r, clr_g, clr_b));
 			playingController.Lens.material.SetColor ("_EmissionColor", new Color (clr_r, clr_g, clr_b));
