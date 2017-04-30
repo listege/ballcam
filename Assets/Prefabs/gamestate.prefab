@@ -49,7 +49,8 @@ AudioSource:
   m_GameObject: {fileID: 1218281361246508}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243595191560766344, guid: c6cec59a7c7654c5aaeb3bc04383ad83,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: cd7e5e7ca39194e3aac9690fff04caf1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -136,10 +137,12 @@ MonoBehaviour:
   playingTimeText: {fileID: 0}
   bestTimeText: {fileID: 0}
   resetTimerImage: {fileID: 0}
+  endingImage: {fileID: 0}
   audioSource: {fileID: 0}
   playingTime: 0
   timer: 15
   pretimer: 1
+  tutoriallvl1: {fileID: 0}
   arrowhelper: {fileID: 114169151809398526, guid: 38a119f8ac8514dad91075a1eb6db2d5,
     type: 2}
   ballControllers:
