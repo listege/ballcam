@@ -18,6 +18,8 @@ public class GameState : MonoBehaviour
 	public float timer = 5f;
 	public float pretimer = 1f;
 
+	public arrowpointer arrowhelper;
+
 	[HideInInspector]
 	public BallController[] ballControllers = new BallController[2];
 	[HideInInspector]
@@ -44,6 +46,8 @@ public class GameState : MonoBehaviour
 			ballControllers [foundController.uniqueIndex] = foundController;
 			foundController.Activate (false, true);
 		}
+
+		Instantiate (arrowhelper);
 
 		StartCoroutine ("Coroutine_Overview");
 		//InvokeRepeating ("ChangeCam", timer, timer);
@@ -217,5 +221,15 @@ public class GameState : MonoBehaviour
 
 			yield return null;
 		}
+	}
+
+	public Camera GetCurrentCamera(){
+		foreach (BallController bc in ballControllers) {
+			if (bc && !bc.isPlaying) {
+				Camera cam = bc.GetCamera ();
+				return cam;
+			}
+		}
+		return null;
 	}
 }
