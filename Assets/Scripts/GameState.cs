@@ -251,7 +251,15 @@ public class GameState : MonoBehaviour
 			if (Input.anyKeyDown)
 			{
 				int sceneIndex = SceneManager.GetActiveScene ().buildIndex;
-				SceneManager.LoadScene (sceneIndex + 1);
+				if(sceneIndex < 15) // 하드코딩
+				{
+					SceneManager.LoadScene (sceneIndex + 1);
+
+				}
+				else
+				{
+					SceneManager.LoadScene (0);	
+				}
 			}
 			yield return null;
 		}
