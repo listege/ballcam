@@ -8,8 +8,12 @@ public class GameState : MonoBehaviour
 {
 	static public GameState Instance = null;
 
+	[HideInInspector]
 	public Camera endingCamera = null;
+	[HideInInspector]
 	public Text playingTimeText = null;
+	[HideInInspector]
+	public Image resetTimerImage = null;
 	[HideInInspector]
 	public AudioSource audioSource = null;
 	[HideInInspector]
@@ -17,6 +21,9 @@ public class GameState : MonoBehaviour
 
 	public float timer = 5f;
 	public float pretimer = 1f;
+	protected float resetTimer = 0;
+
+	public arrowpointer arrowhelper;
 
 	[HideInInspector]
 	public BallController[] ballControllers = new BallController[2];
@@ -39,11 +46,29 @@ public class GameState : MonoBehaviour
 	{
 		Instance = this;
 
+		GameObject[] rootObjects = SceneManager.GetActiveScene ().GetRootGameObjects ();
+		foreach (GameObject rootObject in rootObjects)
+		{
+			switch (rootObject.name)
+			{
+			case "GlobalCamera":
+				endingCamera = rootObject.GetComponent<Camera>();
+				break;
+			case "Canvas":
+				playingTimeText = rootObject.transform.FindChild ("TimeText").GetComponent<Text> ();
+				playingTimeText.text = string.Format ("Stage {0}", SceneManager.GetActiveScene ().buildIndex);
+				resetTimerImage = rootObject.transform.FindChild ("ResetImage").GetComponent<Image>();
+				break;
+			}
+		}
+
 		BallController[] foundControllers = FindObjectsOfType<BallController> ();
 		foreach (BallController foundController in foundControllers) {
 			ballControllers [foundController.uniqueIndex] = foundController;
 			foundController.Activate (false, true);
 		}
+
+		Instantiate (arrowhelper);
 
 		StartCoroutine ("Coroutine_Overview");
 		//InvokeRepeating ("ChangeCam", timer, timer);
@@ -86,6 +111,23 @@ public class GameState : MonoBehaviour
 
 			if (playingTime > (tickCount + 1) * timer - pretimer) {
 				StartWarningVisualFeedBack ();
+			}
+
+			if (Input.GetKey (KeyCode.Space) == true) {
+				resetTimer += Time.deltaTime;
+				if (resetTimer >= 1.5f)
+					SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+			} else
+				resetTimer = 0;
+
+			if (resetTimer > 0)
+			{
+				resetTimerImage.gameObject.SetActive (true);
+				resetTimerImage.rectTransform.localScale = new Vector3 (Mathf.Clamp01(resetTimer / 1.5f), 1, 1);
+			}
+			else
+			{
+				resetTimerImage.gameObject.SetActive (false);
 			}
 
 			if (playingTime > (tickCount + 1) * timer)
@@ -164,7 +206,7 @@ public class GameState : MonoBehaviour
 		foreach (BallController controller in ballControllers)
 			cameraPosition += controller.transform.localPosition;
 		cameraPosition /= ballControllers.Length;
-		cameraPosition.y = 10;
+		cameraPosition.y = 7;
 		endingCamera.transform.localPosition = cameraPosition;
 		endingCamera.gameObject.SetActive (true);
 
@@ -217,5 +259,15 @@ public class GameState : MonoBehaviour
 
 			yield return null;
 		}
+	}
+
+	public Camera GetCurrentCamera(){
+		foreach (BallController bc in ballControllers) {
+			if (bc && !bc.isPlaying) {
+				Camera cam = bc.GetCamera ();
+				return cam;
+			}
+		}
+		return null;
 	}
 }

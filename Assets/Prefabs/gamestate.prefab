@@ -136,10 +136,13 @@ MonoBehaviour:
   playingTimeText: {fileID: 0}
   audioSource: {fileID: 0}
   playingTime: 0
-  timer: 15
+  timer: 10
   pretimer: 1
+  arrowhelper: {fileID: 114169151809398526, guid: 38a119f8ac8514dad91075a1eb6db2d5,
+    type: 2}
   ballControllers:
   - {fileID: 0}
   - {fileID: 0}
   ballCursor: 0
   isGameOver: 0
+  musicSetIndex: 0
