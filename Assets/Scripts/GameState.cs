@@ -84,6 +84,35 @@ public class GameState : MonoBehaviour
 		//InvokeRepeating ("ChangeCam", timer, timer);
 	}
 
+	void Update(){
+		
+		// !!!!! 짧은 게임 이 기 에 performance 걱정없이 고!
+		BallController playingController = null;
+		BallController cameraController = null;
+		foreach(BallController controller in ballControllers)
+		{
+			if (controller.isPlaying)
+				playingController = controller;
+			else
+				cameraController = controller;
+		}
+
+		if (playingController && cameraController) {
+
+			//Debug.Log ("playingController");
+
+			float clr_r = Mathf.Lerp (1f, 0f, Mathf.InverseLerp (0.6f, 1f, playingController.CheckAngle (cameraController)));
+			float clr_g = Mathf.Lerp (0f, 1f, Mathf.InverseLerp (0.6f, 1f, playingController.CheckAngle (cameraController)));
+			float clr_b = Mathf.Lerp (0.2f, 0.2f, Mathf.InverseLerp (0.6f, 1f, playingController.CheckAngle (cameraController)));
+
+			Debug.Log (Mathf.InverseLerp (-1f, 1f, playingController.CheckAngle (cameraController)));
+
+			playingController.Lens.material.SetColor ("_Color", new Color (clr_r, clr_g, clr_b));
+			playingController.Lens.material.SetColor ("_EmissionColor", new Color (clr_r, clr_g, clr_b));
+		}
+
+	}
+
 	IEnumerator Coroutine_Overview()
 	{
 		Vector3 pos = endingCamera.transform.localPosition;
