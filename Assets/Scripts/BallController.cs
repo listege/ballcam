@@ -160,11 +160,11 @@ public class BallController : MonoBehaviour {
 		Vector3 startAngle = new Vector3(0, 0.42f, 0);
 		while (true)
 		{
-			Vector3 targetAngle = new Vector3(Random.Range (-10f, 10f), 0.42f, Random.Range (-6f, 6f));
+			Vector3 targetAngle = new Vector3(Random.Range (-10f, 5f), 0.42f, Random.Range (-6f, 6f));
 			float distance = Vector2.Distance (startAngle, targetAngle);
-			while (distance < 7.0f)
+			while (distance < 6.0f)
 			{
-				targetAngle = new Vector3(Random.Range (-10f, 10f), 0.42f, Random.Range (-6f, 6f));
+				targetAngle = new Vector3(Random.Range (-10f, 5f), 0.42f, Random.Range (-6f, 6f));
 				distance = Vector2.Distance (startAngle, targetAngle);
 			}
 
