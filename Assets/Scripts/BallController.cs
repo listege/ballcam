@@ -190,7 +190,7 @@ public class BallController : MonoBehaviour {
 	IEnumerator Corotuine_ToungueDance()
 	{
 		Transform childTransform = transform.FindChild("toungue");
-		ChangeLayerRecursively (childTransform, 12);
+		//ChangeLayerRecursively (childTransform, 12);
 		childTransform = childTransform.FindChild ("Armature");
 		childTransform = childTransform.FindChild ("Bone.001");
 		Rigidbody body1 = childTransform.GetComponent<Rigidbody> ();
@@ -201,7 +201,7 @@ public class BallController : MonoBehaviour {
 		{
 			{
 				Vector3 forceDirection = Random.onUnitSphere;
-				body1.AddForce (forceDirection * 500);
+				body1.AddForce (forceDirection * 400);
 				if (body1.velocity.magnitude > 2f)
 					body1.velocity = body1.velocity.normalized * 2f;
 			}
@@ -209,7 +209,7 @@ public class BallController : MonoBehaviour {
 
 			{
 				Vector3 forceDirection = Random.onUnitSphere;
-				body2.AddForce (forceDirection * 500);
+				body2.AddForce (forceDirection * 400);
 				if (body2.velocity.magnitude > 2f)
 					body2.velocity = body2.velocity.normalized * 2f;
 			}
