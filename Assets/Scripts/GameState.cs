@@ -319,6 +319,7 @@ public class GameState : MonoBehaviour
 
 	IEnumerator Coroutine_StartNoiseGrain(Camera cam)
 	{
+		Instruction_Switching.Instances [ballCursor].Show ();
         UnityStandardAssets.ImageEffects.NoiseAndGrain noise = cam.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
 
 		float start = noise.intensityMultiplier;

@@ -39,13 +39,14 @@ GameObject:
   - component: {fileID: 224618240573564998}
   - component: {fileID: 222339893667860056}
   - component: {fileID: 114756393031224218}
+  - component: {fileID: 114311485117035670}
   m_Layer: 5
   m_Name: Instruction A to B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1249407608622322
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,13 +161,14 @@ GameObject:
   - component: {fileID: 224440918199679124}
   - component: {fileID: 222146760762912966}
   - component: {fileID: 114228081079537986}
+  - component: {fileID: 114967560703223028}
   m_Layer: 5
   m_Name: Instruction B to A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &114168389214789646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,14 +262,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 97412cebba6cf4c4cad2a7408ff8ade8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57d16ba3fb54040d28bc33928a10a45e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -275,6 +277,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114311485117035670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202310425133038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940acc12d65834ed097a365b552122cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 114756393031224218}
 --- !u!114 &114327134373129506
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -386,14 +400,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 57d16ba3fb54040d28bc33928a10a45e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97412cebba6cf4c4cad2a7408ff8ade8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -444,6 +458,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114967560703223028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973588490063818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 940acc12d65834ed097a365b552122cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 114228081079537986}
 --- !u!114 &114975418287207818
 MonoBehaviour:
   m_ObjectHideFlags: 1
