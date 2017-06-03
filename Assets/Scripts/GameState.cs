@@ -35,6 +35,8 @@ public class GameState : MonoBehaviour
 	public arrowpointer arrowhelper;
 
 	[HideInInspector]
+	public bool recommendRestart = false;
+	[HideInInspector]
 	public BallController[] ballControllers = new BallController[2];
 	[HideInInspector]
 	public int ballCursor = 0;
@@ -199,6 +201,17 @@ public class GameState : MonoBehaviour
 			}
 			// 대략 0.8 이상 정도면 보인다고 생각하면 될 듯
 			audioSource.volume = Mathf.Max(0, (playingController.CheckAngle (cameraController) - 0.6f) * 2.5f);
+			// ISEEYOU
+			if (cameraController.CheckAngle (playingController) < 0.7f && playingController.CheckAngle (cameraController) > 0.8f)
+				Instruction_ISeeYou.Instance.Show ();
+			else
+				Instruction_ISeeYou.Instance.Hide ();
+
+			if (cameraController.CheckAngle (playingController) < 0.7f && playingController.CheckAngle (cameraController) < 0.7f)
+				recommendRestart = true;
+			else
+				recommendRestart = false;
+
 			yield return null;
 		}
 	}
