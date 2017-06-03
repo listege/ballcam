@@ -35,7 +35,7 @@ public class GameState : MonoBehaviour
 	public arrowpointer arrowhelper;
 
 	[HideInInspector]
-	public bool recommendRestart = false;
+	public float recommendRestart = 0;
 	[HideInInspector]
 	public BallController[] ballControllers = new BallController[2];
 	[HideInInspector]
@@ -207,10 +207,10 @@ public class GameState : MonoBehaviour
 			else
 				Instruction_ISeeYou.Instance.Hide ();
 
-			if (cameraController.CheckAngle (playingController) < 0.7f && playingController.CheckAngle (cameraController) < 0.7f)
-				recommendRestart = true;
-			else
-				recommendRestart = false;
+            if (cameraController.CheckAngle(playingController) < 0.7f && playingController.CheckAngle(cameraController) < 0.7f)
+                recommendRestart += Time.deltaTime;
+            else
+                recommendRestart = 0;
 
 			yield return null;
 		}

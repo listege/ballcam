@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TutorialLevel1 : MonoBehaviour
 {
-	Image img;
+    protected static bool IsDisplayed = false;
+    Image img;
 	GameState gs;
 
 	// Use this for initialization
@@ -21,16 +22,20 @@ public class TutorialLevel1 : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (gs && !gs.isGameOver && gs.recommendRestart)
+		if (gs && IsDisplayed == false && !gs.isGameOver && gs.recommendRestart > 15)
 		{
+            IsDisplayed = true;
+            StartCoroutine("Coroutine_Restart");
 			img.color = new Color (1f, 1f, 1f, 1f);
-		}
-		else
-		{
-			img.color = new Color (1f, 1f, 1f, 0f);
-		}
+        }
 	}
 
+    IEnumerator Coroutine_Restart()
+    {
+        img.color = new Color(1f, 1f, 1f, 1f);
+        yield return new WaitForSeconds(5);
+        img.color = new Color(1f, 1f, 1f, 0f);
+    }
 	/*
 	protected static bool IsDisplayed = false;
 	Image img;
