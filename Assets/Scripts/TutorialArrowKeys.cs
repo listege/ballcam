@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class TutorialLevel1 : MonoBehaviour
+public class TutorialArrowKeys : MonoBehaviour
 {
 	protected static bool IsDisplayed = false;
 	Image img;
 
-	public float TutorialTime = 35f;
+	public float TutorialTime = 3f;
 
 	bool IsTutorialLoaded = false;
 
@@ -17,7 +18,7 @@ public class TutorialLevel1 : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		if (IsDisplayed == true)
+		if (SceneManager.GetActiveScene ().name != "testscene_lv1" || IsDisplayed == true)
 		{
 			gameObject.SetActive (false);
 			return;
@@ -29,13 +30,12 @@ public class TutorialLevel1 : MonoBehaviour
 		if (go)
 			gs = go.GetComponent<GameState> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (gs && !gs.isGameOver && !IsTutorialLoaded && Time.timeSinceLevelLoad > TutorialTime) 
-		{
+		if (gs && !gs.isGameOver && !IsTutorialLoaded && Time.timeSinceLevelLoad > TutorialTime) {
 			img.color = new Color (1f, 1f, 1f, 1f);
-			GameState.tutoriallvl1played = true;
+			IsDisplayed = true;
 			IsTutorialLoaded = true;
 		}
 
