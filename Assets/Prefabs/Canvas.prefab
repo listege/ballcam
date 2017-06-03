@@ -390,7 +390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6bc3e8d82214b19866c4e9026a9e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialTime: 35
 --- !u!114 &114487375191458196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf1b6c772f6bd4a70b0b24c28831ba23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialTime: 6
+  TutorialTime: 4
 --- !u!222 &222022558825248616
 CanvasRenderer:
   m_ObjectHideFlags: 1
