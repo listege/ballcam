@@ -25,6 +25,7 @@ public class GameState : MonoBehaviour
 	[HideInInspector]
 	public float playingTime = 0;
     public AudioSource noiseAudioSource = null;
+    public bool isPIPEnabled = false;
 
 	public float timer = 5f;
 	public float pretimer = 1f;
@@ -50,7 +51,11 @@ public class GameState : MonoBehaviour
 	{
 		audioSource = GetComponent<AudioSource> ();
 		musicSetIndex = Random.Range (0, 2);
-	}
+
+        string name = SceneManager.GetActiveScene().name;
+        if(name == "testscene_lv1" || name == "testscene_lv2")
+            isPIPEnabled = true;
+    }
 
 	// Use this for initialization
 	void Start ()

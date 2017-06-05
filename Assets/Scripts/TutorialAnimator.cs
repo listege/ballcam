@@ -23,7 +23,7 @@ public class TutorialAnimator : MonoBehaviour {
 
 		rect.position = pos;
 
-		if (!ready && rect.position.y > 50f) {
+		if (!ready && rect.position.y > 675f) {
 			ready = true;
 		}
 

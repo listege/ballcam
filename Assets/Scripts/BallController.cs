@@ -136,20 +136,27 @@ public class BallController : MonoBehaviour {
         }			
 		else
         {
-            camera.gameObject.SetActive(true);
-            if(isPlaying == true) // PIP
+            if(GameState.Instance.isPIPEnabled)
             {
-                camera.depth = 1;
-                camera.rect = new Rect(0.02f, 0.68f, 0.3f, 0.3f);
-                camera.transform.GetChild(0).gameObject.SetActive(false);
-                camera.GetComponent<AudioListener>().enabled = false;
+                camera.gameObject.SetActive(true);
+                if (isPlaying == true) // PIP
+                {
+                    camera.depth = 1;
+                    camera.rect = new Rect(0.01f, 0.71f, 0.28f, 0.28f);
+                    camera.transform.GetChild(0).gameObject.SetActive(false);
+                    camera.GetComponent<AudioListener>().enabled = false;
+                }
+                else // 메인
+                {
+                    camera.depth = 0;
+                    camera.rect = new Rect(0, 0, 1, 1);
+                    camera.transform.GetChild(0).gameObject.SetActive(true);
+                    camera.GetComponent<AudioListener>().enabled = true;
+                }
             }
-            else // 메인
+            else
             {
-                camera.depth = 0;
-                camera.rect = new Rect(0, 0, 1, 1);
-                camera.transform.GetChild(0).gameObject.SetActive(true);
-                camera.GetComponent<AudioListener>().enabled = true;
+                camera.gameObject.SetActive(!state);
             }
         }
 
