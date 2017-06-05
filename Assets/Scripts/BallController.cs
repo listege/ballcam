@@ -131,9 +131,27 @@ public class BallController : MonoBehaviour {
 			childTransform.gameObject.SetActive (false);
 		// TEMP
 		if(forceTurnOffCamera == true)
-			camera.gameObject.SetActive (false);
+        {
+            camera.gameObject.SetActive(false);
+        }			
 		else
-			camera.gameObject.SetActive (!state);
+        {
+            camera.gameObject.SetActive(true);
+            if(isPlaying == true) // PIP
+            {
+                camera.depth = 1;
+                camera.rect = new Rect(0.02f, 0.68f, 0.3f, 0.3f);
+                camera.transform.GetChild(0).gameObject.SetActive(false);
+                camera.GetComponent<AudioListener>().enabled = false;
+            }
+            else // 메인
+            {
+                camera.depth = 0;
+                camera.rect = new Rect(0, 0, 1, 1);
+                camera.transform.GetChild(0).gameObject.SetActive(true);
+                camera.GetComponent<AudioListener>().enabled = true;
+            }
+        }
 
 		UnityStandardAssets.ImageEffects.NoiseAndGrain noise = camera.gameObject.GetComponent<UnityStandardAssets.ImageEffects.NoiseAndGrain> ();
 		noise.intensityMultiplier = 0f;

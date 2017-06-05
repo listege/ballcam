@@ -33,16 +33,13 @@ public class arrowpointer : MonoBehaviour {
 		power.z = -Input.GetAxis ("Horizontal");
 
 		if (Vector3.Magnitude(power) > 0f) {
-			mat.SetFloat ("_Opacity", 1f);
+            Quaternion q = Quaternion.LookRotation(power, Vector3.up);
+            q = Quaternion.Euler(q.eulerAngles + new Vector3(0f, 90f, 0f));
+            transform.rotation = q;
+            mat.SetFloat ("_Opacity", 1f);
 		} else {
 			mat.SetFloat ("_Opacity", 0f);
 		}
-
-		Quaternion q = Quaternion.LookRotation(power, Vector3.up);
-		q = Quaternion.Euler( q.eulerAngles + new Vector3 (0f, 90f, 0f));
-		transform.rotation = q;
-
-
 	}
 
 
