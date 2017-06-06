@@ -247,7 +247,8 @@ public class GameState : MonoBehaviour
 		if (isGameOver == true)
 			return;
 
-		foreach (BallController controllers in ballControllers)
+        Instruction_ISeeYou.Instance.Hide();
+        foreach (BallController controllers in ballControllers)
 			controllers.GameOver ();
 		isGameOver = true;
 		StartCoroutine ("Coroutine_EndingObject");

@@ -117,7 +117,7 @@ public class BallController : MonoBehaviour {
 
 	public bool IsActive()
 	{
-		return camera.gameObject.activeSelf;
+		return camera.gameObject.activeSelf && camera.GetComponent<AudioListener>().enabled == true;
 	}
 
 	public void Activate(bool state, bool forceTurnOffCamera = false)

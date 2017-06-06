@@ -12,6 +12,8 @@ public class Instruction_Switching : MonoBehaviour
 
 	void Awake()
 	{
+        if (Instances.Count >= 2)
+            Instances.Clear();
 		Instances.Add (this);
 		_image.color = Color.white;
 		gameObject.SetActive (false);
